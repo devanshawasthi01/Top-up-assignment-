@@ -168,24 +168,6 @@ pipeline {
                 '''
             }
         }
-
-        stage('1️⃣4️⃣ Deploy JAR (Without Docker)') {
-            steps {
-                echo '☕ Deploying JAR file directly on port ${JAR_PORT}...'
-                sh '''
-                    pkill -f "java -jar" || true
-                    sleep 3
-
-                    JAR_FILE=$(ls target/*.jar | grep -v original | head -n 1)
-                    echo "Deploying: $JAR_FILE"
-
-                    BUILD_ID=dontKillMe nohup java -jar $JAR_FILE --server.port=${JAR_PORT} > app.log 2>&1 &
-                    sleep 8
-                    echo "✅ JAR deployed"
-                '''
-            }
-        }
-
         stage('1️⃣5️⃣ Health Check & Verification') {
             steps {
                 echo '✅ Verifying ALL deployments...'
