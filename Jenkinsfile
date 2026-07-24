@@ -3,7 +3,7 @@ agent any
 
 tools {
     jdk 'JDK 11'
-    maven 'Maven 3'
+    maven 'Maven-3'
 }
 
 environment {
